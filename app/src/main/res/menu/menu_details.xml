@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.moviesapp.DetailsActivity">
+    <item
+        android:id="@+id/action_main"
+        android:orderInCategory="100"
+        android:title="@string/action_main"
+        app:showAsAction="never"
+        android:icon="@drawable/home_bottom_icon" />
+    <item
+        android:id="@+id/action_favorite"
+        android:orderInCategory="100"
+        android:title="@string/action_favorites"
+        app:showAsAction="never"
+        android:icon="@drawable/heart_bottom_icon" />
+</menu>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Про кино</string>
+    <string name="title_activity_details">ScrollingActivity</string>
+    <string name="action_main">Главная</string>
+    <string name="action_favorites">Избранные</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="LikeText">Понравилось</string>
+    <string name="Invite">Пригласить</string>
+    <string name="Comment">Комментарий</string>
+    <string name="InviteText">Пригласи-ка друга по:</string>
+    <string name="DetailsText">Детали</string>
+    <string name="leave_text">Уже покидаете нас?</string>
+    <string name="stay_text">Остаться</string>
+    <string name="exit_text">Выйти</string>
+</resources>

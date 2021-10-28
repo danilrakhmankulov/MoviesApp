@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">About movies</string>
+    <string name="title_activity_details">ScrollingActivity</string>
+    <string name="action_main">Main</string>
+    <string name="action_favorites">Favorites</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="LikeText">Like</string>
+    <string name="Invite">Invite</string>
+    <string name="Comment">Comments</string>
+    <string name="InviteText">Hey, invite your a friend, dude:</string>
+    <string name="DetailsText">Details:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="leave_text">Do you want to leave us?</string>
+    <string name="stay_text">Stay</string>
+    <string name="exit_text">Leave</string>
+</resources>

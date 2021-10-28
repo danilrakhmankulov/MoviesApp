@@ -1,0 +1,75 @@
+package com.example.moviesapp
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.*
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+
+
+class MovieAdapter(private val items : Array<MyMovie>, private val selectMovie: (movie : MyMovie) -> Unit) : RecyclerView.Adapter<MovieItemViewHolder>() {
+    private var selectedId: Int = -1
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemViewHolder {
+        var inflater = LayoutInflater.from(parent.context)
+        return MovieItemViewHolder(inflater.inflate(R.layout.listitem_movie, parent, false), selectMovie)
+    }
+
+    override fun onBindViewHolder(holder: MovieItemViewHolder, position: Int) {
+        holder.Bind(items[position], selectedId)
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
+    }
+}
+
+class MovieItemViewHolder(itemView: View, private val selectMovie: (movie : MyMovie) -> Unit) : RecyclerView.ViewHolder(itemView){
+    private val titleTextView : TextView = itemView.findViewById(R.id.MovieTitle)
+    private val posterImageView : ImageView = itemView.findViewById(R.id.MoviePoster)
+    private val detailsButton : Button = itemView.findViewById(R.id.DetailButton)
+    private val likeTogglButton : ToggleButton = itemView.findViewById(R.id.LikeToggleButton)
+    private val layoutRoot : RelativeLayout = itemView.findViewById(R.id.LayoutRoot)
+
+    fun Bind(item: MyMovie, selectedId: Int){
+        // Выставляем заголовок
+        titleTextView.text = item.Title
+
+        // Грузим постер
+        DownloadImageFromInternet(posterImageView).execute(item.Poster)
+
+        // Добавляем все необходимое кнопочке
+        detailsButton.setOnClickListener {
+            selectMovie(item)
+            SizeAnimationHelper.animateTap(detailsButton)
+        }
+
+        likeTogglButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            item.isFavorite = isChecked
+        }
+        likeTogglButton.setOnClickListener {
+            SizeAnimationHelper.animateTap(likeTogglButton)
+        }
+
+        likeTogglButton.isChecked = item.isFavorite
+
+        if (DataAccess.Movies[position].Id == selectedId){
+            setSelected()
+        }
+        else {
+            setNotSelected()
+        }
+    }
+
+    fun setSelected(){
+        layoutRoot.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.selectedListItemBackground))
+    }
+
+    fun setNotSelected(){
+        layoutRoot.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.defaultListItemBackground))
+    }
+}
+
+
+
