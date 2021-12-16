@@ -13,4 +13,6 @@
     <string name="leave_text">Do you want to leave us?</string>
     <string name="stay_text">Stay</string>
     <string name="exit_text">Leave</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="action_settings">Settings</string>
 </resources>

@@ -6,11 +6,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
-
-class MovieAdapter(private val items : Array<MyMovie>, private val selectMovie: (movie : MyMovie) -> Unit) : RecyclerView.Adapter<MovieItemViewHolder>() {
-    private var selectedId: Int = -1
-
+class MovieAdapter(private val items : Array<MyMovie>, private val selectMovie: (movie : MyMovie) -> Unit, private var selectedId: Int = -1) : RecyclerView.Adapter<MovieItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieItemViewHolder {
         var inflater = LayoutInflater.from(parent.context)
         return MovieItemViewHolder(inflater.inflate(R.layout.listitem_movie, parent, false), selectMovie)
@@ -37,7 +35,10 @@ class MovieItemViewHolder(itemView: View, private val selectMovie: (movie : MyMo
         titleTextView.text = item.Title
 
         // Грузим постер
-        DownloadImageFromInternet(posterImageView).execute(item.Poster)
+        Glide
+            .with(posterImageView.context)
+            .load(item.Poster)
+            .into(posterImageView)
 
         // Добавляем все необходимое кнопочке
         detailsButton.setOnClickListener {
@@ -47,6 +48,12 @@ class MovieItemViewHolder(itemView: View, private val selectMovie: (movie : MyMo
 
         likeTogglButton.setOnCheckedChangeListener { buttonView, isChecked ->
             item.isFavorite = isChecked
+            if (isChecked){
+                Toast.makeText(itemView.context, "Вам понравился фильм", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(itemView.context, "Вам больше не нравится фильм :(", Toast.LENGTH_SHORT).show()
+            }
         }
         likeTogglButton.setOnClickListener {
             SizeAnimationHelper.animateTap(likeTogglButton)

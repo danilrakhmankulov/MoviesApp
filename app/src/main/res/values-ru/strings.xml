@@ -12,4 +12,5 @@
     <string name="leave_text">Уже покидаете нас?</string>
     <string name="stay_text">Остаться</string>
     <string name="exit_text">Выйти</string>
+    <string name="action_settings">Настройки</string>
 </resources>
